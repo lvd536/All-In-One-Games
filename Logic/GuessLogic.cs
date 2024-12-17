@@ -9,7 +9,7 @@ public class GuessLogic
 
    public void GameLogic()
    {
-      guessVer.randomNumber = rnd.Next(1, 10);
+      guessVer.randomNumber = rnd.Next(1, 100);
       
       Console.WriteLine("Загаданно число от 1 до 100. Можете начать угадывать");
       do
