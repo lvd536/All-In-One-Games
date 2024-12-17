@@ -1,25 +1,32 @@
 ﻿using games.Games;
 using games.Logic;
+using games.Variables;
 
-GuessGame guessGame = new GuessGame();
-GuessLogic guessLogic = new GuessLogic();
-//GuessVariables guessVar = new GuessVariables();
-
-GameStart();
-
-
-void GameStart()
+public class Program
 {
-    int globalInput;
-    Console.WriteLine("Добро пожаловать в All in One Games!");
-    Console.WriteLine("Выберите тип игры (1 - Угадайка) :");
-    globalInput = Convert.ToInt32(Console.ReadLine());
-    if (globalInput == 1)
+    static void Main(string[] args)
     {
-        guessGame.Start();
-        for (int i = 0; i < 999; i++)
+        GuessGame guessGame = new GuessGame();
+        GuessLogic guessLogic = new GuessLogic();
+        MainVariable mainVariable = new MainVariable();
+
+        GameStart();
+        Console.WriteLine("Желаете сыграть еще раз?");
+        Console.ReadKey();
+
+        void GameStart()
         {
-            guessLogic.GameLogic();
+            Console.WriteLine("Добро пожаловать в All in One Games!");
+            Console.WriteLine("Выберите тип игры (1 - Угадайка) :");
+            mainVariable.globalInput = Convert.ToInt32(Console.ReadLine());
+            if (mainVariable.globalInput == 1)
+            {
+                guessGame.Start();
+                for (int i = 0; i < 999; i++)
+                {
+                    guessLogic.GameLogic();
+                }
+            }
         }
     }
 }
