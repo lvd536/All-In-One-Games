@@ -29,11 +29,10 @@ public class Program
                     if (input == ConsoleKey.Y)
                     {
                         guessVariables.userInput = 0;
-                       // guessVariables.restartForGuess = true;
+                        guessVariables.guesses = 0;
                     }
                     else if (input == ConsoleKey.N)
                     {
-                        //guessVariables.restartForGuess = false;
                         break;
                     }
                     else break;
