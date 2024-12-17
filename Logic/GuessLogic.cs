@@ -9,7 +9,7 @@ public class GuessLogic
 
    public void GameLogic()
    {
-      guessVer.randomNumber = rnd.Next(1, 100);
+      guessVer.randomNumber = rnd.Next(1, 10);
       
       Console.WriteLine("Загаданно число от 1 до 100. Можете начать угадывать");
       do
@@ -18,19 +18,6 @@ public class GuessLogic
          if (guessVer.userInput == guessVer.randomNumber)
          {
             Console.WriteLine($"Вы угадали число {guessVer.randomNumber} за {guessVer.guesses} попыток");
-
-            Console.WriteLine("Хотите повторить игру? Y/N");
-            if (Console.ReadKey().Key == ConsoleKey.Y)
-            {
-               guessVer.userInput = 0;
-               guessVer.restartForGuess = true;
-               break;
-            }
-            else
-            {
-               guessVer.restartForGuess = false;
-               break;
-            }
          }
          else if (guessVer.userInput < guessVer.randomNumber)
          {

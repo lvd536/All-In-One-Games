@@ -12,6 +12,7 @@ public class Program
         GuessVariables guessVariables = new GuessVariables();
 
         GameStart();
+
         void GameStart()
         {
             Console.WriteLine("Добро пожаловать в All in One Games!");
@@ -20,13 +21,23 @@ public class Program
             if (mainVariable.globalInput == 1)
             {
                 guessGame.Start();
-
-                guessLogic.GameLogic();
-                
-                do
+                while (true)
                 {
                     guessLogic.GameLogic();
-                } while (guessVariables.restartForGuess);
+                    Console.WriteLine("Хотите повторить игру? Y/N");
+                    ConsoleKey input = Console.ReadKey().Key;
+                    if (input == ConsoleKey.Y)
+                    {
+                        guessVariables.userInput = 0;
+                        guessVariables.restartForGuess = true;
+                    }
+                    else if (input == ConsoleKey.N)
+                    {
+                        guessVariables.restartForGuess = false;
+                        break;
+                    }
+                    else break;
+                }
             }
         }
     }
