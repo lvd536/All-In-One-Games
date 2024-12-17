@@ -7,11 +7,14 @@ public class GuessLogic
    private GuessVariables guessVer = new GuessVariables();
    private Random rnd = new Random();
 
-   public void GameLogic()
+   public void GameLogic(int oneRnd, int twoRnd, bool basic)
    {
-      guessVer.randomNumber = rnd.Next(1, 100);
+      if (basic)
+      {
+         guessVer.randomNumber = rnd.Next(1, 100);
+      } else guessVer.randomNumber = rnd.Next(oneRnd, twoRnd);
       
-      Console.WriteLine("Загаданно число от 1 до 100. Можете начать угадывать");
+      Console.WriteLine("Программа загадала число. Можете начать угадывать");
       do
       {
          guessVer.userInput = Convert.ToInt32(Console.ReadLine());
