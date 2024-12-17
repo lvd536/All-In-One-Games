@@ -9,11 +9,9 @@ public class Program
         GuessGame guessGame = new GuessGame();
         GuessLogic guessLogic = new GuessLogic();
         MainVariable mainVariable = new MainVariable();
+        GuessVariables guessVariables = new GuessVariables();
 
         GameStart();
-        Console.WriteLine("Желаете сыграть еще раз?");
-        Console.ReadKey();
-
         void GameStart()
         {
             Console.WriteLine("Добро пожаловать в All in One Games!");
@@ -22,10 +20,13 @@ public class Program
             if (mainVariable.globalInput == 1)
             {
                 guessGame.Start();
-                for (int i = 0; i < 999; i++)
+
+                guessLogic.GameLogic();
+                
+                do
                 {
                     guessLogic.GameLogic();
-                }
+                } while (guessVariables.restartForGuess);
             }
         }
     }
