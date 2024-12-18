@@ -33,11 +33,7 @@ public class GuessGame
             }
 
             else if (mainVar.globalInput == 2) guessLogic.GameLogic(0, 0, true);
-            else
-            {
-            }
-
-            ;
+            else;
 
             Console.WriteLine("Хотите повторить игру? Y/N");
             ConsoleKey input = Console.ReadKey().Key;

@@ -18,7 +18,6 @@ public class Program
             mainVariable.globalInput = Convert.ToInt32(Console.ReadLine());
             if (mainVariable.globalInput == 1)
             {
-                //guessGame.Start();
                 guessGame.StartLogic();
             }
         }
