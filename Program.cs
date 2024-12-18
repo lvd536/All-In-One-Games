@@ -36,14 +36,13 @@ public class Program
                     }
 
                     else if (mainVariable.globalInput == 2) guessLogic.GameLogic(0, 0, true);
-                    else ;
+                    else {};
                     
                     Console.WriteLine("Хотите повторить игру? Y/N");
                     ConsoleKey input = Console.ReadKey().Key;
                     if (input == ConsoleKey.Y)
                     {
                         guessVariables.userInput = 0;
-                        guessVariables.guesses = 0;
                     }
                     else if (input == ConsoleKey.N)
                     {
