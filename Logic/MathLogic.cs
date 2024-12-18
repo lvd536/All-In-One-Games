@@ -74,4 +74,30 @@ public class MathLogic
             } while (mathVar.ex1 * mathVar.ex2 != mathVar.userInput);
         }
     }
+
+    public void TestGameLogic()
+    {
+        Console.WriteLine("Выберите длинну примера: ");
+        int choise = Convert.ToInt32(Console.ReadLine());
+        int[] numbersgen = new int[choise]; // Хранит числа примера
+        string[] symbols = new string[] { "+", "-", "/", "*" }; // Хранит мат. символы
+        string[] symbolgen = new string[choise - 1]; // Вставляет символы рандомно (-1 для того, чтобы символ не стоял в конце всего примера)
+        for (int i = 0; i < numbersgen.Length; i++)
+        {
+            int rndsymbgen = random.Next(0, 4); // Рандомно выбираем мат.символ
+            if(i < symbolgen.Length)
+            {
+                symbolgen[i] = symbols[rndsymbgen];
+            }
+            numbersgen[i] = random.Next(10, 1000); // Записываем в массив с числами рандомное число
+            if (i < symbolgen.Length)
+            {
+                Console.Write($"{numbersgen[i]} {symbolgen[i]} ");
+            }
+            else
+            {
+                Console.Write($"{numbersgen[i]} ");
+            }
+        }
+    }
 }

@@ -21,7 +21,8 @@ public class MathGame
         {
             Console.WriteLine("Выберите тип примеров (1 - Плюс | 2 - Минус | 3 - Деление | 4 - Умножение):");
             mathVariables.userInput = Convert.ToInt32(Console.ReadLine());
-            mathLogic.GameLogic(mathVariables.userInput);
+            //mathLogic.GameLogic(mathVariables.userInput);
+            mathLogic.TestGameLogic();
             Console.WriteLine("Хотите повторить игру? Y/N");
             ConsoleKey input = Console.ReadKey().Key;
             if (input == ConsoleKey.Y)
