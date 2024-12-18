@@ -8,17 +8,22 @@ public class Program
     {
         GuessGame guessGame = new GuessGame();
         MainVariable mainVariable = new MainVariable();
+        MathGame mathGame = new MathGame();
 
         GameStart();
 
         void GameStart()
         {
             Console.WriteLine("Добро пожаловать в All in One Games!");
-            Console.WriteLine("Выберите тип игры (1 - Угадайка) :");
+            Console.WriteLine("Выберите тип игры (1 - Угадайка | 2 - Математическая викторина) :");
             mainVariable.globalInput = Convert.ToInt32(Console.ReadLine());
             if (mainVariable.globalInput == 1)
             {
                 guessGame.StartLogic();
+            }
+            else if (mainVariable.globalInput == 2)
+            {
+                mathGame.StartLogic();
             }
         }
     }
