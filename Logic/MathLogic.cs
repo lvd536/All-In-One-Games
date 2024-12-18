@@ -85,19 +85,24 @@ public class MathLogic
         for (int i = 0; i < numbersgen.Length; i++)
         {
             int rndsymbgen = random.Next(0, 4); // Рандомно выбираем мат.символ
-            if(i < symbolgen.Length)
+            if(i < symbolgen.Length) // Если i меньше длинны массива symbolgen
             {
-                symbolgen[i] = symbols[rndsymbgen];
+                if (symbols[rndsymbgen] == "/") // Если symbols = / меняем знак на : для удобного понимания
+                {
+                    symbolgen[i] = ":";
+                }
+                else symbolgen[i] = symbols[rndsymbgen]; // Иначе пропускаем и выводим символ с массива
             }
             numbersgen[i] = random.Next(10, 1000); // Записываем в массив с числами рандомное число
-            if (i < symbolgen.Length)
+            if (i < symbolgen.Length) // Если i меньше длинны symbolgen пишем строку с символом математики в конце
             {
                 Console.Write($"{numbersgen[i]} {symbolgen[i]} ");
             }
             else
             {
-                Console.Write($"{numbersgen[i]} ");
+                Console.Write($"{numbersgen[i]} "); // Иначе пишем строку только с числом чтобы не допустить ненужного символа в конце
             }
+            // TODO: Доделать систему на все мат. действия, сделать систему монет, доделать логику выбора кол-ва примеров
         }
     }
 }
