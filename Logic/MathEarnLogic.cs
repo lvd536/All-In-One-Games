@@ -1,10 +1,13 @@
 ﻿using System.Text.Json.Serialization.Metadata;
+using games.Variables;
 
 namespace games.Logic;
 
 public class MathEarnLogic
 {
     private Random rnd = new Random();
+    private semiDataBaseLogic dbLogic = new semiDataBaseLogic();
+    private MainVariable mainVar = new MainVariable(); 
     public int CalculateCoinsEarned(int lenght, int difficulty, int result, bool passed)
     {
         int baseCoins = 100; // бейсик количество монет
@@ -20,6 +23,11 @@ public class MathEarnLogic
         {
             coinsEarned = 150 - difficultyMultiplier - lenghtEarn / 10 + randomBonus;
         }
+        if (coinsEarned < 0 && passed)
+        {
+            coinsEarned = coinsEarned * -1;
+        }
+        
         return Math.Max(coinsEarned, 0); // Проверяем количество монет, должно быть не отрицательное
     }
 }

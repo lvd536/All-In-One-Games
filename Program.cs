@@ -11,7 +11,7 @@ public class Program
         MathGame mathGame = new MathGame();
         semiDataBaseLogic semiDBLogic = new semiDataBaseLogic();
         Console.Title = "All in One game | by lvd.";
-        semiDBLogic.InitDB(true);
+        semiDBLogic.InitDB(false);
         GameStart();
 
         void GameStart()

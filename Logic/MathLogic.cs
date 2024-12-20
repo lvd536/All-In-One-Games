@@ -8,6 +8,7 @@ public class MathLogic
     private Random random = new Random();
     private MathEarnLogic mathEarn = new MathEarnLogic();
     private MainVariable mainVar = new MainVariable();
+    private semiDataBaseLogic semiDBLogic = new semiDataBaseLogic();
     private int choise;
     private long answer;
     private int userInput;
@@ -125,8 +126,22 @@ public class MathLogic
             Console.WriteLine("Поздравляем! Вы угадали число.");
             int resultEarn = Convert.ToInt32(mathRes);
             int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
+            try
+            {
+                mainVar.globalMoney = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "moneyDB.db"));
+                Console.WriteLine(mainVar.globalMoney);
+            }catch(FormatException){}
             mainVar.globalMoney += coinsEarned;
-            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+            File.WriteAllText(semiDBLogic.folder + "moneyDB.db", mainVar.globalMoney.ToString());
+            try
+            {
+                mainVar.globalMaths = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "mathsDB.db"));
+                Console.WriteLine(mainVar.globalMaths);
+            }catch(FormatException){}
+            mainVar.globalMaths ++;
+            File.WriteAllText(semiDBLogic.folder + "mathsDB.db", mainVar.globalMaths.ToString());
+            
+            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}. Всего решенных примеров: {mainVar.globalMaths}");
         }
         else
         {
@@ -186,15 +201,29 @@ public class MathLogic
         {
             Console.WriteLine("Поздравляем! Вы угадали число.");
             int resultEarn = Convert.ToInt32(mathRes);
-            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, mathSymb + 1, resultEarn, true);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
+            try
+            {
+                mainVar.globalMoney = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "moneyDB.db"));
+                Console.WriteLine(mainVar.globalMoney);
+            } catch(FormatException){}
             mainVar.globalMoney += coinsEarned;
-            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+            File.WriteAllText(semiDBLogic.folder + "moneyDB.db", mainVar.globalMoney.ToString());
+            try
+            {
+                mainVar.globalMaths = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "mathsDB.db"));
+                Console.WriteLine(mainVar.globalMaths);
+            }catch(FormatException){}
+            mainVar.globalMaths ++;
+            File.WriteAllText(semiDBLogic.folder + "mathsDB.db", mainVar.globalMaths.ToString());
+            
+            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}. Всего решенных примеров: {mainVar.globalMaths}");
         }
         else
         {
             Console.WriteLine("Вы не угадали число.");
             int resultEarn = Convert.ToInt32(mathRes);
-            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, mathSymb + 1, resultEarn, false);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, false);
             mainVar.globalMoney -= coinsEarned;
             Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
         }
