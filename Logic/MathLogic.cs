@@ -7,15 +7,25 @@ public class MathLogic
 {
     private Random random = new Random();
     private MathVariables mathVar = new MathVariables();
+    private MathEarnLogic mathEarn = new MathEarnLogic();
+    private MainVariable mainVar = new MainVariable();
     private int choise;
     private long answer;
-
+    private int userInput;
     public void Launch()
     {
         while (true)
         {
             Console.WriteLine("Выберите тип примеров (0 - Плюс | 1 - Минус | 2 - Деление | 3 - Умножение | Все - 4):");
-            int userInput = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                userInput = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Вы ввели некорректное число.");
+                break;
+            }
             
             Console.WriteLine("Выберите длинну примера: ");
             choise = Convert.ToInt32(Console.ReadLine());
@@ -110,8 +120,23 @@ public class MathLogic
         Console.WriteLine(mathRes);
         Console.WriteLine("Введите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
-        if (mathRes == answer) Console.WriteLine("Поздравляем! Вы угадали число.");
-        else Console.WriteLine("Вы не угадали число.");
+        
+        if (mathRes == answer)
+        {
+            Console.WriteLine("Поздравляем! Вы угадали число.");
+            int resultEarn = Convert.ToInt32(mathRes);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
+            mainVar.globalMoney += coinsEarned;
+            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+        }
+        else
+        {
+            Console.WriteLine("Вы не угадали число.");
+            int resultEarn = Convert.ToInt32(mathRes);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, false);
+            mainVar.globalMoney -= coinsEarned;
+            Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+        }
     }
     
     public void GameCalculateSeparateLogic(int mathSymb)
@@ -158,7 +183,21 @@ public class MathLogic
         Console.WriteLine(mathRes);
         Console.WriteLine("Введите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
-        if (mathRes == answer) Console.WriteLine("Поздравляем! Вы угадали число.");
-        else Console.WriteLine("Вы не угадали число.");
+        if (mathRes == answer)
+        {
+            Console.WriteLine("Поздравляем! Вы угадали число.");
+            int resultEarn = Convert.ToInt32(mathRes);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, mathSymb + 1, resultEarn, true);
+            mainVar.globalMoney += coinsEarned;
+            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+        }
+        else
+        {
+            Console.WriteLine("Вы не угадали число.");
+            int resultEarn = Convert.ToInt32(mathRes);
+            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, mathSymb + 1, resultEarn, false);
+            mainVar.globalMoney -= coinsEarned;
+            Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {mainVar.globalMoney}");
+        }
     }
 }

@@ -16,7 +16,13 @@ public class Program
         {
             Console.WriteLine("Добро пожаловать в All in One Games!");
             Console.WriteLine("Выберите тип игры (1 - Угадайка | 2 - Математическая викторина) :");
-            mainVariable.globalInput = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                mainVariable.globalInput = Convert.ToInt32(Console.ReadLine());
+            } catch (FormatException)
+            {
+                Console.WriteLine($"Вы ввели некорректное число");
+            }
             if (mainVariable.globalInput == 1)
             {
                 guessGame.StartLogic();
