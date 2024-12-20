@@ -4,7 +4,6 @@ namespace games.Logic;
 
 public class semiDataBaseLogic
 {
-    private MainVariable mainVariable = new MainVariable();
     private static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
     public string folder = desktopPath + "\\All-In-One\\";
     public void InitDB(bool debug)

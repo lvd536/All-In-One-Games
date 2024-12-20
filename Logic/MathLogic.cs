@@ -39,6 +39,11 @@ public class MathLogic
                 Console.WriteLine("Вы выбрали слишком маленький пример. Минимальная длина - 2. Потоврите ввод");
                 choise = Convert.ToInt32(Console.ReadLine());
             }
+            else if (choise > 10 && userInput == 3)
+            {
+                Console.WriteLine("Для умножения максимально доступное кол-во примеров - 10! Попробуйте еще раз");
+                choise = Convert.ToInt32(Console.ReadLine());
+            }
             else {}
             
             switch (userInput)
@@ -86,6 +91,26 @@ public class MathLogic
         for (int i = 0; i < numbersgen.Length; i++)
         {
             int rndsymbgen = random.Next(0, 4); // Рандомно выбираем мат.символ
+            
+            switch (symbols[i])
+            {
+                case "+":
+                    numbersgen[i] = random.Next(10, 1000);
+                    break;
+                
+                case "-":
+                    numbersgen[i] = random.Next(10, 1000);
+                    break;
+                
+                case "/":
+                    numbersgen[i] = random.Next(2, 51);
+                    break;
+                
+                case "*":
+                    numbersgen[i] = random.Next(2, 22);
+                    break;
+            }
+            
             if (i < symbolgen.Length) // Если i меньше длинны массива symbolgen
             {
                 if (symbols[rndsymbgen] == "/") // Если symbols = / меняем знак на : для удобного понимания
@@ -170,7 +195,25 @@ public class MathLogic
                 else symbolgen[i] = symbols[mathSymb]; // Иначе пропускаем и выводим символ с массива
             }
 
-            numbersgen[i] = random.Next(10, 100); // Записываем в массив с числами рандомное число
+            switch (mathSymb)
+            {
+                case 0:
+                    numbersgen[i] = random.Next(10, 1000);
+                    break;
+                
+                case 1:
+                    numbersgen[i] = random.Next(10, 1000);
+                    break;
+                
+                case 2:
+                    numbersgen[i] = random.Next(2, 51);
+                    break;
+                
+                case 3:
+                    numbersgen[i] = random.Next(2, 22);
+                    break;
+            }
+            //numbersgen[i] = random.Next(10, 100); // Записываем в массив с числами рандомное число
             if (i < symbolgen.Length) // Если i меньше длинны symbolgen пишем строку с символом математики в конце
             {
                 Console.Write($"{numbersgen[i]} {symbolgen[i]} ");
