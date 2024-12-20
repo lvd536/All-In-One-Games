@@ -6,7 +6,6 @@ namespace games.Logic;
 public class MathLogic
 {
     private Random random = new Random();
-    private MathVariables mathVar = new MathVariables();
     private MathEarnLogic mathEarn = new MathEarnLogic();
     private MainVariable mainVar = new MainVariable();
     private int choise;

@@ -1,5 +1,4 @@
 ﻿using games.Games;
-using games.Logic;
 using games.Variables;
 
 public class Program

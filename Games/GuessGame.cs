@@ -9,15 +9,10 @@ public class GuessGame
     private GuessLogic guessLogic = new GuessLogic();
     private GuessVariables guessVariables = new GuessVariables();
 
-    public void Start()
+    public void StartLogic()
     {
         Console.WriteLine("Добро пожаловать в игру *Угадай число* !");
         Console.WriteLine("Ваша задача: угадать число, которое загадала система");
-    }
-
-    public void StartLogic()
-    {
-        Start();
         while (true)
         {
             Console.WriteLine("Хотите настроить диапазон чисел? (1 - Настроить в ручную | 2 - Оставить базовый)");
@@ -33,7 +28,7 @@ public class GuessGame
             }
 
             else if (mainVar.globalInput == 2) guessLogic.GameLogic(0, 0, true);
-            else;
+            else {};
 
             Console.WriteLine("Хотите повторить игру? Y/N");
             ConsoleKey input = Console.ReadKey().Key;
