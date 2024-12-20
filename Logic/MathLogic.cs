@@ -28,7 +28,15 @@ public class MathLogic
             }
             
             Console.WriteLine("Выберите длинну примера: ");
-            choise = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                choise = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Вы ввели некорректное значение");
+                break;
+            }
             if (choise > 40)
             {
                 Console.WriteLine("Вы превысили лимит доступной длины приимера. Максимальная длина - 40. Потоврите ввод");
@@ -144,7 +152,14 @@ public class MathLogic
         long mathRes = Convert.ToInt64(res);
         //Console.WriteLine(mathRes);
         Console.WriteLine("\nВведите ваш ответ: ");
-        answer = Convert.ToInt64(Console.ReadLine());
+        try
+        {
+            answer = Convert.ToInt64(Console.ReadLine());
+        } catch (FormatException)
+        {
+            Console.WriteLine("Вы ввели некорректное значение!");
+            return;
+        }
         
         if (mathRes == answer)
         {
@@ -237,7 +252,15 @@ public class MathLogic
         long mathRes = Convert.ToInt64(res);
         //Console.WriteLine(mathRes);
         Console.WriteLine("\nВведите ваш ответ: ");
-        answer = Convert.ToInt64(Console.ReadLine());
+        try
+        {
+            answer = Convert.ToInt64(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Вы ввели некорректное значение!");
+            return;
+        }
         if (mathRes == answer)
         {
             Console.WriteLine("Поздравляем! Вы угадали число.");
