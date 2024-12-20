@@ -118,7 +118,7 @@ public class MathLogic
         var res = dt.Compute(examResult, String.Empty);
         long mathRes = Convert.ToInt64(res);
         //Console.WriteLine(mathRes);
-        Console.WriteLine("Введите ваш ответ: ");
+        Console.WriteLine("\nВведите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
         
         if (mathRes == answer)
@@ -193,7 +193,7 @@ public class MathLogic
         var res = dt.Compute(examResult, String.Empty);
         long mathRes = Convert.ToInt64(res);
         //Console.WriteLine(mathRes);
-        Console.WriteLine("Введите ваш ответ: ");
+        Console.WriteLine("\nВведите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
         if (mathRes == answer)
         {
