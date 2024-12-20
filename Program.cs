@@ -1,4 +1,5 @@
 ﻿using games.Games;
+using games.Logic;
 using games.Variables;
 
 public class Program
@@ -8,7 +9,10 @@ public class Program
         GuessGame guessGame = new GuessGame();
         MainVariable mainVariable = new MainVariable();
         MathGame mathGame = new MathGame();
+        semiDataBaseLogic semiDBLogic = new semiDataBaseLogic();
 
+        semiDBLogic.InitDB();
+        
         GameStart();
 
         void GameStart()
