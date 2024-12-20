@@ -117,7 +117,7 @@ public class MathLogic
         DataTable dt = new DataTable();
         var res = dt.Compute(examResult, String.Empty);
         long mathRes = Convert.ToInt64(res);
-        Console.WriteLine(mathRes);
+        //Console.WriteLine(mathRes);
         Console.WriteLine("Введите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
         
@@ -129,14 +129,12 @@ public class MathLogic
             try
             {
                 mainVar.globalMoney = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "moneyDB.db"));
-                Console.WriteLine(mainVar.globalMoney);
             }catch(FormatException){}
             mainVar.globalMoney += coinsEarned;
             File.WriteAllText(semiDBLogic.folder + "moneyDB.db", mainVar.globalMoney.ToString());
             try
             {
                 mainVar.globalMaths = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "mathsDB.db"));
-                Console.WriteLine(mainVar.globalMaths);
             }catch(FormatException){}
             mainVar.globalMaths ++;
             File.WriteAllText(semiDBLogic.folder + "mathsDB.db", mainVar.globalMaths.ToString());
@@ -194,7 +192,7 @@ public class MathLogic
         DataTable dt = new DataTable();
         var res = dt.Compute(examResult, String.Empty);
         long mathRes = Convert.ToInt64(res);
-        Console.WriteLine(mathRes);
+        //Console.WriteLine(mathRes);
         Console.WriteLine("Введите ваш ответ: ");
         answer = Convert.ToInt64(Console.ReadLine());
         if (mathRes == answer)
@@ -205,14 +203,12 @@ public class MathLogic
             try
             {
                 mainVar.globalMoney = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "moneyDB.db"));
-                Console.WriteLine(mainVar.globalMoney);
             } catch(FormatException){}
             mainVar.globalMoney += coinsEarned;
             File.WriteAllText(semiDBLogic.folder + "moneyDB.db", mainVar.globalMoney.ToString());
             try
             {
                 mainVar.globalMaths = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "mathsDB.db"));
-                Console.WriteLine(mainVar.globalMaths);
             }catch(FormatException){}
             mainVar.globalMaths ++;
             File.WriteAllText(semiDBLogic.folder + "mathsDB.db", mainVar.globalMaths.ToString());
