@@ -1,4 +1,5 @@
-﻿using games.Variables;
+﻿using System.Data;
+using games.Variables;
 
 namespace games.Logic;
 
@@ -6,6 +7,8 @@ public class MathLogic
 {
     private Random random = new Random();
     private MathVariables mathVar = new MathVariables();
+    private int choise;
+    private long answer;
 
     public void GameLogic(int choise)
     {
@@ -77,15 +80,42 @@ public class MathLogic
 
     public void TestGameLogic()
     {
-        Console.WriteLine("Выберите длинну примера: ");
-        int choise = Convert.ToInt32(Console.ReadLine());
+        while (true)
+        {
+            Console.WriteLine("Выберите длинну примера: ");
+            choise = Convert.ToInt32(Console.ReadLine());
+            if (choise > 40)
+            {
+                Console.WriteLine("Вы превысили лимит доступной длины приимера. Максимальная длина - 40. Потоврите ввод");
+                choise = Convert.ToInt32(Console.ReadLine());
+            }
+            else if (choise <= 1)
+            {
+                Console.WriteLine("Вы выбрали слишком маленький пример. Минимальная длина - 2. Потоврите ввод");
+                choise = Convert.ToInt32(Console.ReadLine());
+            }
+            else {}
+
+            GameCalculateLogic();
+            Console.WriteLine("Хотите повторить игру? Y/N");
+            ConsoleKey input = Console.ReadKey().Key;
+            if (input == ConsoleKey.Y) ;
+            else if (input == ConsoleKey.N) break;
+            else break;
+        }
+    }
+
+    public void GameCalculateLogic()
+    {
+        string examResult = String.Empty;
         int[] numbersgen = new int[choise]; // Хранит числа примера
-        string[] symbols = new string[] { "+", "-", "/", "*" }; // Хранит мат. символы
+        string[] symbols = new string[4] { "+", "-", "/", "*" }; // Хранит мат. символы
         string[] symbolgen = new string[choise - 1]; // Вставляет символы рандомно (-1 для того, чтобы символ не стоял в конце всего примера)
+        Console.Write("Ваш пример: ");
         for (int i = 0; i < numbersgen.Length; i++)
         {
             int rndsymbgen = random.Next(0, 4); // Рандомно выбираем мат.символ
-            if(i < symbolgen.Length) // Если i меньше длинны массива symbolgen
+            if (i < symbolgen.Length) // Если i меньше длинны массива symbolgen
             {
                 if (symbols[rndsymbgen] == "/") // Если symbols = / меняем знак на : для удобного понимания
                 {
@@ -93,16 +123,33 @@ public class MathLogic
                 }
                 else symbolgen[i] = symbols[rndsymbgen]; // Иначе пропускаем и выводим символ с массива
             }
-            numbersgen[i] = random.Next(10, 1000); // Записываем в массив с числами рандомное число
+
+            numbersgen[i] = random.Next(10, 100); // Записываем в массив с числами рандомное число
             if (i < symbolgen.Length) // Если i меньше длинны symbolgen пишем строку с символом математики в конце
             {
                 Console.Write($"{numbersgen[i]} {symbolgen[i]} ");
+                if (symbols[rndsymbgen] == ":")
+                {
+                    symbolgen[i] = "/";
+                }
+                else symbolgen[i] = symbols[rndsymbgen];
+
+                examResult += numbersgen[i] + " " + symbolgen[i] + " ";
             }
             else
             {
                 Console.Write($"{numbersgen[i]} "); // Иначе пишем строку только с числом чтобы не допустить ненужного символа в конце
+                examResult += numbersgen[i];
             }
-            // TODO: Доделать систему на все мат. действия, сделать систему монет, доделать логику выбора кол-ва примеров
         }
+
+        DataTable dt = new DataTable();
+        var res = dt.Compute(examResult, String.Empty);
+        long mathRes = Convert.ToInt64(res);
+        //Console.WriteLine(mathRes);
+        Console.WriteLine("Введите ваш ответ: ");
+        answer = Convert.ToInt64(Console.ReadLine());
+        if (mathRes == answer) Console.WriteLine("Поздравляем! Вы угадали число.");
+        else Console.WriteLine("Вы не угадали число.");
     }
 }
