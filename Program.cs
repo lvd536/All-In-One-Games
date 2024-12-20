@@ -10,9 +10,8 @@ public class Program
         MainVariable mainVariable = new MainVariable();
         MathGame mathGame = new MathGame();
         semiDataBaseLogic semiDBLogic = new semiDataBaseLogic();
-
-        semiDBLogic.InitDB();
-        
+        Console.Title = "All in One game | by lvd.";
+        semiDBLogic.InitDB(true);
         GameStart();
 
         void GameStart()
