@@ -27,18 +27,32 @@ public class MathEarnLogic
 
         if (!passed)
         {
-            MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+            try
+            {
+                MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+            } catch(FormatException) {}
             MainVariable.globalMoney += coinsEarned;
             File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
-            Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}");
+            
+            Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}. Решенных примеров: {MainVariable.globalMaths}");
         }
         else
         {
-            MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+            try
+            {
+                MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+            } catch(FormatException) {}
             MainVariable.globalMoney += coinsEarned;
-            File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
-            Console.WriteLine($"Получено {coinsEarned} монет! Баланс: {MainVariable.globalMoney}.");
+            File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());            
+            try
+            {
+                MainVariable.globalMaths = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "mathsDB.db"));
+            } catch(FormatException) {}
+            MainVariable.globalMaths ++;
+            File.WriteAllText(semiDataBaseLogic.folder + "mathsDB.db", MainVariable.globalMaths.ToString());
+            Console.WriteLine($"Получено {coinsEarned} монет! Баланс: {MainVariable.globalMoney}. Решенных примеров: {MainVariable.globalMaths}");
         }
+        
         return Math.Max(coinsEarned, 0); // Проверяем количество монет, должно быть не отрицательное
     }
 }
