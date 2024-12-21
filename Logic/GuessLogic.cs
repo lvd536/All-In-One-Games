@@ -21,13 +21,13 @@ public class GuessLogic
         else guessVar.randomNumber = rnd.Next(oneRnd, twoRnd);
 
         Console.WriteLine("Программа загадала число. Можете начать угадывать");
-        Console.WriteLine(guessVar.randomNumber);
+        //Console.WriteLine(guessVar.randomNumber);
         do
         {
             guessVar.userInput = Convert.ToInt32(Console.ReadLine());
             if (guessVar.userInput == guessVar.randomNumber)
             {
-                Console.WriteLine($"Вы угадали число {guessVar.randomNumber} за {guessVar.guesses} попыток");
+                Console.WriteLine($"Вы угадали число {guessVar.randomNumber}!");
                 guessEarn.CalculateCoinsEarned(guessVar.guesses, oneRnd, twoRnd);
             }
             else if (guessVar.userInput < guessVar.randomNumber)

@@ -14,11 +14,20 @@ public class GuessEarnLogic
         int randomBonus = rnd.Next(1, 11); // бонус от 1 до 10 (т.к 11 не считается)
 
         int coinsEarned = baseCoins + difficultyMultiplier - guessFuckup + randomBonus;
-
-        MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+        try
+        {
+            MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+        } catch(FormatException) {}
         MainVariable.globalMoney += coinsEarned;
         File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
-        Console.WriteLine($"Получено {coinsEarned} монет! Баланс: {MainVariable.globalMoney}.");
+        try
+        {
+            MainVariable.globalGuesses = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "guessesDB.db"));
+        } catch(FormatException) {}
+        MainVariable.globalGuesses ++;
+        File.WriteAllText(semiDataBaseLogic.folder + "guessesDB.db", MainVariable.globalGuesses.ToString());
+        
+        Console.WriteLine($"Получено {coinsEarned} монет! Баланс: {MainVariable.globalMoney}. Угаданных чисел: {MainVariable.globalGuesses}");
 
 
         return Math.Max(coinsEarned, 0); // Проверяем количество монет, должно быть не отрицательное
