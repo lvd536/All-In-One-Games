@@ -155,39 +155,23 @@ public class MathLogic
         try
         {
             answer = Convert.ToInt64(Console.ReadLine());
-        } catch (FormatException)
+        }
+        catch (FormatException)
         {
             Console.WriteLine("Вы ввели некорректное значение!");
             return;
         }
-        
         if (mathRes == answer)
         {
-            Console.WriteLine("Поздравляем! Вы угадали число.");
+            Console.WriteLine("Поздравляем! Вы ввели правильный ответ.");
             int resultEarn = Convert.ToInt32(mathRes);
-            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
-            try
-            {
-                MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
-            }catch(FormatException){}
-            MainVariable.globalMoney += coinsEarned;
-            File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
-            try
-            {
-                mainVar.globalMaths = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "mathsDB.db"));
-            }catch(FormatException){}
-            mainVar.globalMaths ++;
-            File.WriteAllText(semiDataBaseLogic.folder + "mathsDB.db", mainVar.globalMaths.ToString());
-            
-            Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}. Всего решенных примеров: {mainVar.globalMaths}");
+            mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
         }
         else
         {
-            Console.WriteLine("Вы не угадали число.");
+            Console.WriteLine("Ваш ответ не верный.");
             int resultEarn = Convert.ToInt32(mathRes);
-            int coinsEarned = mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, false);
-            MainVariable.globalMoney -= coinsEarned;
-            Console.WriteLine($"У вас убавилось {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}");
+            mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, false);
         }
     }
     
@@ -250,7 +234,7 @@ public class MathLogic
         DataTable dt = new DataTable();
         var res = dt.Compute(examResult, String.Empty);
         long mathRes = Convert.ToInt64(res);
-        Console.WriteLine(mathRes);
+        //Console.WriteLine(mathRes);
         Console.WriteLine("\nВведите ваш ответ: ");
         try
         {
@@ -263,13 +247,13 @@ public class MathLogic
         }
         if (mathRes == answer)
         {
-            Console.WriteLine("Поздравляем! Вы угадали число.");
+            Console.WriteLine("Поздравляем! Вы ввели правильный ответ.");
             int resultEarn = Convert.ToInt32(mathRes);
             mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, true);
         }
         else
         {
-            Console.WriteLine("Вы не угадали число.");
+            Console.WriteLine("Ваш ответ не верный.");
             int resultEarn = Convert.ToInt32(mathRes);
             mathEarn.CalculateCoinsEarned(examResult.Length, 4, resultEarn, false);
         }

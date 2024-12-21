@@ -28,22 +28,7 @@ public class GuessLogic
             if (guessVar.userInput == guessVar.randomNumber)
             {
                 Console.WriteLine($"Вы угадали число {guessVar.randomNumber} за {guessVar.guesses} попыток");
-                int coinsEarned = guessEarn.CalculateCoinsEarned(guessVar.guesses, oneRnd, twoRnd);
-                
-                try
-                {
-                    MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
-                } catch(FormatException){}
-                MainVariable.globalMoney += coinsEarned;
-                File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
-                try
-                {
-                    mainVar.globalGuesses = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "guessesDB.db"));
-                }catch(FormatException){}
-                mainVar.globalGuesses ++;
-                File.WriteAllText(semiDataBaseLogic.folder + "guessesDB.db", mainVar.globalGuesses.ToString());
-                
-                Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}. Всего угаданных чисел: {mainVar.globalGuesses}");
+                guessEarn.CalculateCoinsEarned(guessVar.guesses, oneRnd, twoRnd);
             }
             else if (guessVar.userInput < guessVar.randomNumber)
             {

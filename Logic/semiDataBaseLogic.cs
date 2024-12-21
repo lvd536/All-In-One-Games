@@ -36,28 +36,4 @@ public class semiDataBaseLogic
             if (debug) Console.WriteLine($"DEBUG: File {file} exists!");
         }
     }
-
-    /*public void Read(string folder, string file, int variable, bool debug)
-    {
-        if (debug)
-        {
-            Console.WriteLine($"DEBUG: Patch: {folder + file}");
-            //Console.WriteLine($"DEBUG: Reading to variable {variable}");
-        }
-        variable = Convert.ToInt32(File.ReadAllText(folder + file));
-        Console.WriteLine("Variable context: " + variable);
-        
-    }
-    
-    public void Write(string folder, string file, int variable, bool debug)
-    {
-        if (debug)
-        {
-            Console.WriteLine($"DEBUG: Patch: {folder + file}");
-            //Console.WriteLine($"DEBUG: Reading to variable {variable}");
-        }
-        File.WriteAllText(folder + file, variable.ToString());
-        if (debug) Console.WriteLine("Variable context writed: " + variable);
-        
-    }*/
 }

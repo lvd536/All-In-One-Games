@@ -1,8 +1,11 @@
-﻿namespace games.Logic;
+﻿using games.Variables;
+
+namespace games.Logic;
 
 public class GuessEarnLogic
 {
     private Random rnd = new Random();
+
     public int CalculateCoinsEarned(int guesses, int oneRnd, int twoRnd)
     {
         int baseCoins = 100; // бейсик количество монет
@@ -11,6 +14,13 @@ public class GuessEarnLogic
         int randomBonus = rnd.Next(1, 11); // бонус от 1 до 10 (т.к 11 не считается)
 
         int coinsEarned = baseCoins + difficultyMultiplier - guessFuckup + randomBonus;
+
+        MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
+        MainVariable.globalMoney += coinsEarned;
+        File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
+        Console.WriteLine($"Получено {coinsEarned} монет! Баланс: {MainVariable.globalMoney}.");
+
+
         return Math.Max(coinsEarned, 0); // Проверяем количество монет, должно быть не отрицательное
     }
 }
