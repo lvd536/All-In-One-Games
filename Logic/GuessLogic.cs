@@ -32,18 +32,18 @@ public class GuessLogic
                 
                 try
                 {
-                    mainVar.globalMoney = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "moneyDB.db"));
+                    MainVariable.globalMoney = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "moneyDB.db"));
                 } catch(FormatException){}
-                mainVar.globalMoney += coinsEarned;
-                File.WriteAllText(semiDBLogic.folder + "moneyDB.db", mainVar.globalMoney.ToString());
+                MainVariable.globalMoney += coinsEarned;
+                File.WriteAllText(semiDataBaseLogic.folder + "moneyDB.db", MainVariable.globalMoney.ToString());
                 try
                 {
-                    mainVar.globalGuesses = Convert.ToInt32(File.ReadAllText(semiDBLogic.folder + "guessesDB.db"));
+                    mainVar.globalGuesses = Convert.ToInt32(File.ReadAllText(semiDataBaseLogic.folder + "guessesDB.db"));
                 }catch(FormatException){}
                 mainVar.globalGuesses ++;
-                File.WriteAllText(semiDBLogic.folder + "guessesDB.db", mainVar.globalGuesses.ToString());
+                File.WriteAllText(semiDataBaseLogic.folder + "guessesDB.db", mainVar.globalGuesses.ToString());
                 
-                Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {mainVar.globalMoney}. Всего угаданных чисел: {mainVar.globalGuesses}");
+                Console.WriteLine($"Вы заработали {coinsEarned} монет! Всего монет: {MainVariable.globalMoney}. Всего угаданных чисел: {mainVar.globalGuesses}");
             }
             else if (guessVar.userInput < guessVar.randomNumber)
             {
